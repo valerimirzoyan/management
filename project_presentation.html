@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Համալսարանական Դեսքթոփ Հավելված</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 60px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin: 25px 0 15px 0;
+        }
+
+        p, li {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding-left: 35px;
+            position: relative;
+        }
+
+        li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .team-member h4 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            color: white;
+            font-size: 1.2em;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        td {
+            font-size: 1.1em;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .feature-box h4 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-text {
+            font-size: 4em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="logo">
+                <div class="logo-text">🎓 NUACA</div>
+            </div>
+            <h1>Համալսարանական Դեսքթոփ Հավելված</h1>
+            <p class="subtitle">Ինտեգրված Կրթական Հարթակ</p>
+            <div style="text-align: center; margin-top: 80px;">
+                <h3>Նախագծի Թիմ</h3>
+                <p style="font-size: 1.5em; margin-top: 30px;">
+                    <strong>Նախագծի Ղեկավար:</strong> Վալերի Միրզոյան<br>
+                    <strong>Թիմի Անդամներ:</strong> Արամ Թևոսյան, Իդա Ավագյան
+                </p>
+                <p style="font-size: 1.2em; margin-top: 40px; color: #666;">
+                    Նոյեմբեր 2025
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Overview -->
+        <div class="slide">
+            <h2>Նախագծի Ընդհանուր Ակնարկ</h2>
+            <p>Համալսարանական դեսքթոփ հավելվածը համապարփակ հարթակ է, որը նախագծված է կրթական փորձը բարելավելու համար։</p>
+            
+            <h3>Հիմնական Նպատակներ</h3>
+            <ul>
+                <li>Պարզեցնել հաղորդակցությունը ուսանողների և դասախոսների միջև</li>
+                <li>Հեշտացնել անվտանգ ֆայլերի փոխանակումը</li>
+                <li>Կենտրոնացնել դասընթացների կառավարումը</li>
+                <li>Բարելավել ժամանակի կառավարումը</li>
+                <li>Ընդլայնել տեղեկատվության տարածումը</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>Թիրախային Լսարան:</strong> 5,000-15,000 ուսանող և 300-800 դասախոս
+            </div>
+        </div>
+
+        <!-- Slide 3: Features -->
+        <div class="slide">
+            <h2>Հիմնական Ֆունկցիոնալություն</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h4>💬 Չաթ</h4>
+                    <p>Իրական ժամանակի հաղորդակցություն</p>
+                </div>
+                <div class="feature-box">
+                    <h4>📁 Ֆայլեր</h4>
+                    <p>Անվտանգ փոխանակում և պահպանում</p>
+                </div>
+                <div class="feature-box">
+                    <h4>📰 Լուրեր</h4>
+                    <p>Հայտարարություններ և թարմացումներ</p>
+                </div>
+                <div class="feature-box">
+                    <h4>📚 Դասընթացներ</h4>
+                    <p>Կառավարում և նյութեր</p>
+                </div>
+                <div class="feature-box">
+                    <h4>📅 Օրացույց</h4>
+                    <p>Ժամանակացույց և հիշեցումներ</p>
+                </div>
+                <div class="feature-box">
+                    <h4>✓ To-Do</h4>
+                    <p>Առաջադրանքների կառավարում</p>
+                </div>
+                <div class="feature-box">
+                    <h4>☁️ Cloud</h4>
+                    <p>Ամպային պահեստ</p>
+                </div>
+                <div class="feature-box">
+                    <h4>🔒 Անվտանգություն</h4>
+                    <p>Տվյալների պաշտպանություն</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Team -->
+        <div class="slide">
+            <h2>Նախագծի Թիմ</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h4>Վալերի Միրզոյան</h4>
+                    <p><strong>Դեր:</strong> Նախագծի Ղեկավար</p>
+                    <p><strong>Պարտականություններ:</strong></p>
+                    <p>• Backend Մշակում</p>
+                    <p>• Տվյալների Բազայի Կառավարում</p>
+                    <p>• Նախագծի Համակարգում</p>
+                </div>
+                <div class="team-member">
+                    <h4>Արամ Թևոսյան</h4>
+                    <p><strong>Դեր:</strong> Frontend Ծրագրավորող</p>
+                    <p><strong>Պարտականություններ:</strong></p>
+                    <p>• UI Մշակում</p>
+                    <p>• Որակի Ապահովում</p>
+                    <p>• DevOps</p>
+                </div>
+                <div class="team-member">
+                    <h4>Իդա Ավագյան</h4>
+                    <p><strong>Դեր:</strong> UI/UX Դիզայներ</p>
+                    <p><strong>Պարտականություններ:</strong></p>
+                    <p>• Ինտերֆեյսի Դիզայն</p>
+                    <p>• Գրաֆիկական Դիզայն</p>
+                    <p>• Օգտատիրոջ Փորձի Բարելավում</p>
+                </div>
+                <div class="team-member">
+                    <h4>Թիմի Աշխատանք</h4>
+                    <p><strong>Հաղորդակցություն:</strong> Slack, Telegram</p>
+                    <p><strong>Կոդի Կառավարում:</strong> GitHub</p>
+                    <p><strong>Նախագծի Կառավարում:</strong> Jira</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Timeline -->
+        <div class="slide">
+            <h2>Նախագծի Ժամանակացույց</h2>
+            <table>
+                <tr>
+                    <th>Փուլ</th>
+                    <th>Տևողություն</th>
+                    <th>Հիմնական Գործունեություն</th>
+                </tr>
+                <tr>
+                    <td>Պլանավորում և Վերլուծություն</td>
+                    <td>6-8 շաբաթ</td>
+                    <td>Պահանջների հավաքագրում, ճարտարապետության նախագծում</td>
+                </tr>
+                <tr>
+                    <td>Դիզայն</td>
+                    <td>4-6 շաբաթ</td>
+                    <td>UI/UX դիզայն, տվյալների բազայի նախագծում</td>
+                </tr>
+                <tr>
+                    <td>Մշակում</td>
+                    <td>16-20 շաբաթ</td>
+                    <td>14 սպրինթ, ֆունկցիոնալության իրականացում</td>
+                </tr>
+                <tr>
+                    <td>Թեստավորում</td>
+                    <td>6-8 շաբաթ</td>
+                    <td>Որակի ապահովում, UAT</td>
+                </tr>
+                <tr>
+                    <td>Տեղակայում</td>
+                    <td>4-6 շաբաթ</td>
+                    <td>Փորձնական և լրիվ տեղակայում</td>
+                </tr>
+            </table>
+            <div class="highlight" style="margin-top: 30px;">
+                <strong>Ընդհանուր Տևողություն:</strong> 36-48 շաբաթ (9-12 ամիս)
+            </div>
+        </div>
+
+        <!-- Slide 6: Tech Stack -->
+        <div class="slide">
+            <h2>Տեխնոլոգիական Համակարգ</h2>
+            
+            <h3>Մշակման Միջավայրեր և Գործիքներ</h3>
+            <ul>
+                <li><strong>IDE:</strong> Visual Studio Code</li>
+                <li><strong>Տարբերակների Վերահսկում:</strong> Git/GitHub</li>
+                <li><strong>Նախագծի Կառավարում:</strong> Jira, Trello</li>
+                <li><strong>Հաղորդակցություն:</strong> Slack, Telegram</li>
+            </ul>
+
+            <h3>Backend և Տվյալների Բազա</h3>
+            <ul>
+                <li><strong>Տվյալների Բազա:</strong> MongoDB</li>
+                <li><strong>Cloud Ենթակառուցվածք:</strong> AWS</li>
+                <li><strong>Framework:</strong> Electron (Cross-platform)</li>
+            </ul>
+
+            <h3>Պլատֆորմների Աջակցություն</h3>
+            <ul>
+                <li>Windows 10+</li>
+                <li>macOS 10.14+</li>
+                <li>Linux (Ubuntu 18.04+)</li>
+            </ul>
+        </div>
+
+        <!-- Slide 7: Budget -->
+        <div class="slide">
+            <h2>Բյուջե և Ռեսուրսներ</h2>
+            
+            <h3>Ֆինանսական Պլան</h3>
+            <table>
+                <tr>
+                    <th>Կատեգորիա</th>
+                    <th>Գումար (USD)</th>
+                </tr>
+                <tr>
+                    <td>Ծրագրային Լիցենզիաներ</td>
+                    <td>$15</td>
+                </tr>
+                <tr>
+                    <td>Ենթակառուցվածք և Հոսթինգ (AWS)</td>
+                    <td>$50</td>
+                </tr>
+                <tr>
+                    <td>Արտակարգ Իրավիճակների Պահուստ</td>
+                    <td>$50</td>
+                </tr>
+                <tr>
+                    <th>Ընդամենը</th>
+                    <th>$115</th>
+                </tr>
+            </table>
+
+            <h3 style="margin-top: 40px;">Մարդկային Ռեսուրսներ</h3>
+            <ul>
+                <li>Մշակման Թիմ: 2 անդամ (լրիվ դրույք)</li>
+                <li>Դիզայնի Թիմ: 1 անդամ (լրիվ դրույք)</li>
+                <li>Ընդհանուր: 3 անձ լրիվ դրույքով</li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: Risks -->
+        <div class="slide">
+            <h2>Ռիսկերի Կառավարում</h2>
+            <table>
+                <tr>
+                    <th>Ռիսկ</th>
+                    <th>Հավանականություն</th>
+                    <th>Ազդեցություն</th>
+                </tr>
+                <tr>
+                    <td>Ինտեգրման խնդիրներ</td>
+                    <td>Բարձր</td>
+                    <td>Բարձր</td>
+                </tr>
+                <tr>
+                    <td>Շրջանակի ընդլայնում</td>
+                    <td>Միջին</td>
+                    <td>Բարձր</td>
+                </tr>
+                <tr>
+                    <td>Ռեսուրսների հասանելիություն</td>
+                    <td>Միջին</td>
+                    <td>Միջին</td>
+                </tr>
+                <tr>
+                    <td>Անվտանգության խոցելիություններ</td>
+                    <td>Ցածր</td>
+                    <td>Բարձր</td>
+                </tr>
+                <tr>
+                    <td>Օգտատերերի ցածր ընդունում</td>
+                    <td>Միջին</td>
+                    <td>Բարձր</td>
+                </tr>
+            </table>
+
+            <div class="highlight" style="margin-top: 30px;">
+                <strong>Մեղմացման Ռազմավարություն:</strong> Շաբաթական ռիսկերի վերանայում, վաղ թեստավորում, համապարփակ ուսուցումներ
+            </div>
+        </div>
+
+        <!-- Slide 9: Success Metrics -->
+        <div class="slide">
+            <h2>Հաջողության Ցուցիչներ</h2>
+            
+            <h3>Նախագծի Հաջողության Չափանիշներ</h3>
+            <ul>
+                <li>Հավելվածը տեղակայված է ժամանակին և բյուջեի սահմաններում</li>
+                <li>Բոլոր հիմնական ֆունկցիաները գործող են</li>
+                <li>Հաջող ավարտված UAT</li>
+                <li>Անվտանգության աուդիտի անցում</li>
+                <li>70% օգտատերերի ընդունում առաջին կիսամյակում</li>
+            </ul>
+
+            <h3>Տեղակայումից Հետո</h3>
+            <ul>
+                <li>Օգտատիրոջ գոհունակություն ≥ 4/5</li>
+                <li>Համակարգի աշխատաժամանակ ≥ 99.5%</li>
+                <li>Պատասխանի ժամանակ < 2 վայրկյան</li>
+                <li>80%+ ակտիվ ամսական օգտատերեր</li>
+            </ul>
+        </div>
+
+        <!-- Slide 10: Conclusion -->
+        <div class="slide">
+            <h2>Եզրակացություն</h2>
+            
+            <div class="highlight">
+                <h3 style="color: #667eea; margin-top: 0;">Նախագծի Տեսլական</h3>
+                <p>Ստեղծել միասնական, արդյունավետ և օգտագործողի համար հարմար հարթակ, որը կվերափոխի համալսարանի ակադեմիական գործընթացները։</p>
+            </div>
+
+            <h3 style="margin-top: 50px;">Հիմնական Առավելություններ</h3>
+            <ul>
+                <li>Միասնական հարթակ 7 ֆունկցիոնալ մոդուլով</li>
+                <li>Cross-platform աջակցություն</li>
+                <li>Անվտանգ և հուսալի համակարգ</li>
+                <li>Ժամանակակից տեխնոլոգիաներ</li>
+                <li>Փորձառու թիմ</li>
+            </ul>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <h3 style="color: #764ba2;">Շնորհակալություն Ուշադրության Համար!</h3>
+                <p style="font-size: 1.2em; color: #666; margin-top: 20px;">
+                    Հարցե՞ր ունեք։
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-number">
+        <span id="current">1</span> / <span id="total">10</span>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)">◀ Նախորդ</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Հաջորդ ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+        document.getElementById('total').textContent = totalSlides;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            
+            if (n > totalSlides) {
+                currentSlide = totalSlides;
+            }
+            if (n < 1) {
+                currentSlide = 1;
+            }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+            
+            document.getElementById('current').textContent = currentSlide;
+            
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        }
+
+        function changeSlide(n) {
+            currentSlide += n;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Initialize
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
